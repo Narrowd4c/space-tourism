@@ -1,9 +1,11 @@
 <template>
-  <div class="container mb-40 mt-[251px] flex">
-    <main class="w-6/12 xl:w-4/12">
-      <h2 ref="subTitle" class="font-barlow text-2xl text-[#D0D6F9]">SO, YOU WANT TO TRAVEL TO</h2>
-      <h1 ref="title" class="py-6 text-[150px] leading-none">SPACE</h1>
-      <p ref="paragraph" class="font-barlow text-[#D0D6F9]">
+  <div class="bg-home min-h-dvh">
+  <HeaderComp></HeaderComp>
+  <div class="container pb-40 xl:pb-0 pt-[251px] text-center xl:text-left xl:flex">
+    <main class="mb-20 lg:mb-[156px] mx-auto xl:mx-0 xl:mb-0 xl:w-4/12">
+      <h2 ref="subTitle" class="font-barlow md:text-2xl text-secondary">SO, YOU WANT TO TRAVEL TO</h2>
+      <h1 ref="title" class="py-6 text-8xl md:text-[150px] leading-none">SPACE</h1>
+      <p ref="paragraph" class="md:w-1/2 xl:w-full mx-auto font-barlow text-secondary">
         Let’s face it; if you want to go to space, you might as well genuinely go to outer space and
         not hover kind of on the edge of it. Well sit back, and relax because we’ll give you a truly
         out of this world experience!
@@ -11,17 +13,17 @@
     </main>
     <button
     ref="exploreButton"
-      class="hover:animate-custom-ping ms-auto mt-auto h-[274px] w-[274px] rounded-full bg-white text-black"
+      class="text-xl md:text-3xl tracking-widest hover:animate-custom-ping ms-auto mt-auto h-[274px] w-[274px] rounded-full bg-white text-black"
     >
       EXPLORE
     </button>
   </div>
-  
+  </div>
 </template>
 
 <script setup lang="ts">
 import { gsap } from "gsap";
-
+import HeaderComp from "../components/HeaderComp.vue";
 import { ref, onMounted } from "vue";
 const exploreButton = ref<any>(null);
 const subTitle = ref<any>(null);
@@ -38,3 +40,18 @@ onMounted(() => {
   gsap.from(paragraph.value, { x:-200, opacity: 0, duration: 1.5, delay: 1.2 });
 });
 </script>
+<style>
+.bg-home{
+    background: url(@/assets/images/home/background-home-mobile.jpg) center/cover no-repeat;
+  }
+  @media screen and (min-width:768px){
+    .bg-home {
+      background: url(@/assets/images/home/background-home-tablet.jpg) center/cover no-repeat;
+    }
+  }
+  @media screen and (min-width:1280px){
+    .bg-home {
+      background: url(@/assets/images/home/background-home-desktop.jpg) center/cover no-repeat;
+    }
+  }
+</style>

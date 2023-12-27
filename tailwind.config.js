@@ -8,7 +8,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        barlow: ["Barlow Condensed", "sans-serif"]
+        barlow: ["Barlow Condensed", "sans-serif"],
+        bellefair: ["Bellefair", "serif"]
+      },
+      colors: {
+        secondary: '#D0D6F9',
       },
       animation: {
         "custom-ping": "shadow 1.5s ease-in-out infinite"
@@ -17,7 +21,7 @@ export default {
         shadow: {
           "0%, 30%": { "box-shadow": "0px 0px 0px 0px rgba(255, 255,255, 0.1)" },
           "20%": { "box-shadow": "0px 0px 0px 6px rgba(255, 255,255, 0.2)" },
-          "50%": { "box-shadow": "0px 0px 0px 16px rgba(255, 255,255, 0.4)" }
+          "50%": { "box-shadow": "0px 0px 0px 10px rgba(255, 255,255, 0.4)" }
         }
       }
     }
