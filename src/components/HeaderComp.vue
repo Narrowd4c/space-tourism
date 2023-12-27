@@ -12,6 +12,7 @@
           <RouterLink to="/"><span class="me-3  font-bold">00</span>HOME</RouterLink>
         </li>
         <li>
+
           <RouterLink to="/destination"><span class="me-3 font-bold">01</span>DESTINATION</RouterLink>
         </li>
         <li>
@@ -19,6 +20,7 @@
         </li>
         <li>
           <RouterLink to="/technology"><span class="me-3 font-bold">03</span>TECHNOLOGY</RouterLink>
+
         </li>
       </ul>
     </nav>
@@ -36,7 +38,7 @@
           <img src="@/assets/images/shared/icon-close.svg" alt="menu" />
         </button>
         <ul
-          class="font-barlow space-y-8 pl-8 tracking-[2.7px] "
+          class="font-barlow space-y-8 pl-8 tracking-[2.7px]"
         >
           <li>
             <RouterLink to="/"><span class="me-3 font-bold">00</span>HOME</RouterLink>
@@ -86,7 +88,9 @@ const menuToggle = debounce(()=> menuClose.value = !menuClose.value, 300)
 .menu-enter-from {
   transform:scaleX(0);
 }
+
 .router-link-active{
   border-bottom: 3px solid #fff;
 }
+
 </style>
