@@ -8,13 +8,13 @@
       <main ref="gsapAnimation" class=" flex flex-wrap items-center xl:flex-nowrap">
         <picture class="xl:order-3">
           <source
-            :srcset="currentData.image.landscape"
+            :srcset="currentData!.image.landscape"
             media="(min-width: 1280px)"
           />
           <img
             class="ms-auto"
-            :src="currentData.image.portrait"
-            :alt="currentData.title"
+            :src="currentData!.image.portrait"
+            :alt="currentData!.title"
           />
         </picture>
         <div class="mx-auto flex gap-8 py-10 xl:flex-col xl:py-0">
@@ -29,9 +29,9 @@
         </div>
         <section class="text-center  xl:text-left xl:ml-20 xl:mr-24 xl:w-[600px]">
           <h3 class="text-secondary pb-3">THE TERMINOLOGY…</h3>
-          <h2 class="pb-4 text-6xl">{{ currentData.title }}</h2>
+          <h2 class="pb-4 text-6xl">{{ currentData!.title }}</h2>
           <p class="text-lg leading-relaxed">
-            {{ currentData.paragraph }}
+            {{ currentData!.paragraph }}
           </p>
         </section>
       </main>
@@ -90,7 +90,8 @@ const current = ref<string>('LAUNCH VEHICLE');
 const terminologyTitle = computed(() => { 
     return dataTerminology.value.map(({ title})=> title)
 })
-const currentData = ref<Terminology>()
+const currentData = ref<Terminology>();
+
 const gsapAnimation = ref<HTMLElement | null>(null)
 watchEffect(()=>{
     currentData.value = dataTerminology.value.filter(({ title }) => title == current.value)[0]
