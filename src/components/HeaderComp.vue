@@ -1,6 +1,6 @@
 <template>
   <header class="pt-10 flex items-center px-6 md:pl-14 md:pr-0">
-    <img src="/logo.svg" alt="logo" />
+    <RouterLink to="/"><img src="/logo.svg" alt="logo" /></RouterLink>
     <div class="z-10 hidden h-px flex-grow translate-x-10 bg-white bg-opacity-40 xl:block"></div>
     <nav
       class="ms-auto hidden bg-white bg-opacity-5 px-12 text-white backdrop-blur-sm md:block xl:pl-[123px] xl:pr-[167px]"
@@ -12,13 +12,15 @@
           <RouterLink to="/"><span class="me-3  font-bold">00</span>HOME</RouterLink>
         </li>
         <li>
-          <RouterLink to="/"><span class="me-3 font-bold">01</span>DESTINATION</RouterLink>
+
+          <RouterLink to="/destination"><span class="me-3 font-bold">01</span>DESTINATION</RouterLink>
         </li>
         <li>
-          <RouterLink to="/"><span class="me-3 font-bold">02</span>CREW</RouterLink>
+          <RouterLink to="/crew"><span class="me-3 font-bold">02</span>CREW</RouterLink>
         </li>
         <li>
-          <RouterLink to="/"><span class="me-3 font-bold">03</span>TECHNOLOGY</RouterLink>
+          <RouterLink to="/technology"><span class="me-3 font-bold">03</span>TECHNOLOGY</RouterLink>
+
         </li>
       </ul>
     </nav>
@@ -30,13 +32,13 @@
     <Transition name="menu">
       <nav
         v-show="!menuClose"
-        class=" origin-right fixed bottom-0 right-0 top-0 w-8/12 bg-white bg-opacity-5 text-white backdrop-blur-xl md:hidden"
+        class="z-10 origin-right fixed bottom-0 right-0 top-0 w-8/12 bg-white bg-opacity-5 text-white backdrop-blur-xl md:hidden"
       >
         <button @click="menuToggle" class="ms-auto block pb-16 pr-6 pt-8 md:hidden">
           <img src="@/assets/images/shared/icon-close.svg" alt="menu" />
         </button>
         <ul
-          class="font-barlow space-y-8 pl-8 tracking-[2.7px] active:[&_a]:text-red-500"
+          class="font-barlow space-y-8 pl-8 tracking-[2.7px]"
         >
           <li>
             <RouterLink to="/"><span class="me-3 font-bold">00</span>HOME</RouterLink>
@@ -86,4 +88,9 @@ const menuToggle = debounce(()=> menuClose.value = !menuClose.value, 300)
 .menu-enter-from {
   transform:scaleX(0);
 }
+
+.router-link-active{
+  border-bottom: 3px solid #fff;
+}
+
 </style>
