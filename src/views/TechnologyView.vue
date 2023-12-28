@@ -1,21 +1,12 @@
 <template>
   <div class="bg-technology min-h-dvh">
     <HeaderComp></HeaderComp>
-    <div class="container py-20 pr-0 overflow-hidden">
-      <h1 class="flex items-center pb-20 font-barlow text-3xl">
-        <span class="me-4 text-2xl text-gray-500">03</span>SPACE LAUNCH 101
-      </h1>
-      <main ref="gsapAnimation" class=" flex flex-wrap items-center xl:flex-nowrap">
+    <div class="container overflow-hidden py-20 xl:pr-0">
+      <PageTitle title="SPACE LAUNCH 101" pageNumber="03"></PageTitle>
+      <main ref="gsapAnimation" class="flex flex-wrap items-center xl:flex-nowrap">
         <picture class="xl:order-3">
-          <source
-            :srcset="currentData!.image.landscape"
-            media="(min-width: 1280px)"
-          />
-          <img
-            class="ms-auto"
-            :src="currentData!.image.portrait"
-            :alt="currentData!.title"
-          />
+          <source :srcset="currentData!.image.landscape" media="(min-width: 1280px)" />
+          <img class="ms-auto" :src="currentData!.image.portrait" :alt="currentData!.title" />
         </picture>
         <div class="mx-auto flex gap-8 py-10 xl:flex-col xl:py-0">
           <button
@@ -24,11 +15,11 @@
             @click="toggle(t)"
             :key="t"
           >
-            {{ i+1 }}
+            {{ i + 1 }}
           </button>
         </div>
-        <section class="text-center  xl:text-left xl:ml-20 xl:mr-24 xl:w-[600px]">
-          <h3 class="text-secondary pb-3">THE TERMINOLOGY…</h3>
+        <section class="text-center xl:ml-20 xl:mr-24 xl:w-[600px] xl:text-left">
+          <h3 class="pb-3 text-secondary">THE TERMINOLOGY…</h3>
           <h2 class="pb-4 text-6xl">{{ currentData!.title }}</h2>
           <p class="text-lg leading-relaxed">
             {{ currentData!.paragraph }}
@@ -44,21 +35,23 @@ import { gsap } from "gsap";
 import { computed, ref, watchEffect } from "vue";
 
 import HeaderComp from "../components/HeaderComp.vue";
-import LaunchLand from "../assets/images/technology/image-launch-vehicle-landscape.jpg"
-import LaunchPort from "../assets/images/technology/image-launch-vehicle-portrait.jpg"
-import SpaceLand from "../assets/images/technology/image-space-capsule-landscape.jpg"
-import SpacePort from "../assets/images/technology/image-space-capsule-portrait.jpg"
-import SpaceportLand from "../assets/images/technology/image-spaceport-landscape.jpg"
-import SpaceportPort from "../assets/images/technology/image-spaceport-portrait.jpg"
+import PageTitle from "../components/PageTitle.vue";
+
+import LaunchLand from "../assets/images/technology/image-launch-vehicle-landscape.jpg";
+import LaunchPort from "../assets/images/technology/image-launch-vehicle-portrait.jpg";
+import SpaceLand from "../assets/images/technology/image-space-capsule-landscape.jpg";
+import SpacePort from "../assets/images/technology/image-space-capsule-portrait.jpg";
+import SpaceportLand from "../assets/images/technology/image-spaceport-landscape.jpg";
+import SpaceportPort from "../assets/images/technology/image-spaceport-portrait.jpg";
 
 type Terminology = {
-    title: string,
-    paragraph: string,
-    image: {
-        portrait: string,
-        landscape:string
-    }
-}
+  title: string;
+  paragraph: string;
+  image: {
+    portrait: string;
+    landscape: string;
+  };
+};
 const dataTerminology = ref<Terminology[]>([
   {
     title: "LAUNCH VEHICLE",
@@ -85,21 +78,24 @@ const dataTerminology = ref<Terminology[]>([
     }
   }
 ]);
-const current = ref<string>('LAUNCH VEHICLE');
+const current = ref<string>("LAUNCH VEHICLE");
 
-const terminologyTitle = computed(() => { 
-    return dataTerminology.value.map(({ title})=> title)
-})
+const terminologyTitle = computed(() => {
+  return dataTerminology.value.map(({ title }) => title);
+});
 const currentData = ref<Terminology>();
+let mm = gsap.matchMedia();
+const gsapAnimation = ref<HTMLElement | null>(null);
 
-const gsapAnimation = ref<HTMLElement | null>(null)
-watchEffect(()=>{
-    currentData.value = dataTerminology.value.filter(({ title }) => title == current.value)[0]
-    gsap.from(gsapAnimation.value, {y:200, opacity:0, duration:1})
-})
+watchEffect(() => {
+  currentData.value = dataTerminology.value.find(({ title }) => title == current.value);
+  mm.add("(min-width: 1280px)", () => {
+    gsap.from(gsapAnimation.value, { y: 200, opacity: 0, duration: 1, ease: "back.out(1.7)" });
+  });
+});
 
 function toggle(title: string) {
-    current.value = title
+  current.value = title;
 }
 </script>
 

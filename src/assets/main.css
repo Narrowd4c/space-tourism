@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Bellefair&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Bellefair&display=swap");
 @tailwind base;
-@layer base{
-  body{
+@layer base {
+  body {
     @apply bg-black;
     @apply text-white;
-    font-family: 'Bellefair', serif;
+    font-family: "Bellefair", serif;
   }
 }
-#app{
+#app {
   @apply min-h-dvh;
 }
 
