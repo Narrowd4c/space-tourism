@@ -2,23 +2,27 @@
   <div class="bg-technology min-h-dvh">
     <HeaderComp></HeaderComp>
     <div class="container overflow-hidden py-20 xl:pr-0">
-      <PageTitle title="SPACE LAUNCH 101" pageNumber="03"></PageTitle>
-      <main ref="gsapAnimation" class="flex flex-wrap items-center xl:flex-nowrap">
-        <picture class="xl:order-3">
+      <PageTitle class="pb-20" title="SPACE LAUNCH 101" pageNumber="03"></PageTitle>
+      <main class="flex flex-wrap items-center xl:flex-nowrap">
+        <picture class="gsapAnimation xl:order-3">
           <source :srcset="currentData!.image.landscape" media="(min-width: 1280px)" />
           <img class="ms-auto" :src="currentData!.image.portrait" :alt="currentData!.title" />
         </picture>
         <div class="mx-auto flex gap-8 py-10 xl:flex-col xl:py-0">
           <button
+            :class="{
+              'bg-white text-black': title === currentData!.title,
+              'bg-transparent': title !== currentData!.title
+            }"
             class="aspect-square w-20 rounded-full border bg-transparent text-2xl hover:bg-white hover:text-black"
-            v-for="(t, i) in terminologyTitle"
-            @click="toggle(t)"
-            :key="t"
+            v-for="(title, i) in terminologyTitle"
+            @click="toggle(title)"
+            :key="title"
           >
             {{ i + 1 }}
           </button>
         </div>
-        <section class="text-center xl:ml-20 xl:mr-24 xl:w-[600px] xl:text-left">
+        <section class="gsapAnimation text-center xl:ml-20 xl:mr-24 xl:w-[600px] xl:text-left">
           <h3 class="pb-3 text-secondary">THE TERMINOLOGY…</h3>
           <h2 class="pb-4 text-6xl">{{ currentData!.title }}</h2>
           <p class="text-lg leading-relaxed">
@@ -85,12 +89,11 @@ const terminologyTitle = computed(() => {
 });
 const currentData = ref<Terminology>();
 let mm = gsap.matchMedia();
-const gsapAnimation = ref<HTMLElement | null>(null);
 
 watchEffect(() => {
   currentData.value = dataTerminology.value.find(({ title }) => title == current.value);
   mm.add("(min-width: 1280px)", () => {
-    gsap.from(gsapAnimation.value, { y: 200, opacity: 0, duration: 1, ease: "back.out(1.7)" });
+    gsap.from(".gsapAnimation", { y: 200, opacity: 0, duration: 1, ease: "back.out(1.7)" });
   });
 });
 

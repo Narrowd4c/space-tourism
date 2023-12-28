@@ -2,13 +2,15 @@
   <div class="bg-destination min-h-dvh">
     <HeaderComp class="pb-20"></HeaderComp>
     <PageTitle class="container pb-10" title="Pick your destination" pageNumber="01"></PageTitle>
+
     <div
-      class="container flex flex-col items-center justify-center gap-20 pb-20 text-center xl:flex-row xl:gap-40"
+      class="container flex flex-col items-center justify-center gap-20 pb-20 text-center xl:flex-row xl:gap-40 xl:text-start"
     >
       <img
         ref="planetImg"
         :src="currentPlanetData?.planetImg"
         :alt="currentPlanetData?.planetName"
+        class="animate-[spin_30s_ease-in_infinite]"
       />
       <div class="md:w-2/3 xl:w-1/3">
         <nav class="pb-10">
@@ -17,7 +19,7 @@
               <button
                 @click="toggle(planet)"
                 :class="{ 'border-b-[3px]': planet === currentPlanet }"
-                class="trading-3 pb-1 font-barlow tracking-widest"
+                class="trading-3 pb-1 font-barlow uppercase tracking-widest"
               >
                 {{ planet }}
               </button>
@@ -25,7 +27,7 @@
           </ul>
         </nav>
         <main>
-          <h2 class="pb-4 text-8xl">{{ currentPlanetData?.planetName }}</h2>
+          <h2 class="pb-4 text-8xl uppercase">{{ currentPlanetData?.planetName }}</h2>
           <p
             class="mb-7 border-b border-[#383B4B] pb-12 font-barlow text-lg leading-relaxed text-secondary"
           >
@@ -55,9 +57,7 @@ import MarsImage from "@/assets/images/destination/image-mars.png";
 import TitanImage from "@/assets/images/destination/image-titan.png";
 import EuropaImage from "@/assets/images/destination/image-europa.png";
 
-import { gsap } from "gsap";
-import { Draggable } from "gsap/Draggable";
-import { ref, onMounted, computed } from "vue";
+import { ref, computed } from "vue";
 
 interface planetDataType {
   planetName: string;
@@ -112,14 +112,6 @@ const currentPlanetData = computed(() => {
 function toggle(val: string) {
   currentPlanet.value = val;
 }
-
-gsap.registerPlugin(Draggable);
-onMounted(() => {
-  Draggable.create(planetImg.value, {
-    type: "rotation",
-    inertia: true
-  });
-});
 </script>
 
 <style scoped>
