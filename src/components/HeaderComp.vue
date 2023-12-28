@@ -42,13 +42,13 @@
             <RouterLink to="/"><span class="me-3 font-bold">00</span>HOME</RouterLink>
           </li>
           <li>
-            <RouterLink to="/"><span class="me-3 font-bold">01</span>DESTINATION</RouterLink>
+            <RouterLink to="/destination"><span class="me-3 font-bold">01</span>DESTINATION</RouterLink>
           </li>
           <li>
-            <RouterLink to="/"><span class="me-3 font-bold">02</span>CREW</RouterLink>
+            <RouterLink to="/crew"><span class="me-3 font-bold">02</span>CREW</RouterLink>
           </li>
           <li>
-            <RouterLink to="/"><span class="me-3 font-bold">03</span>TECHNOLOGY</RouterLink>
+            <RouterLink to="/technology"><span class="me-3 font-bold">03</span>TECHNOLOGY</RouterLink>
           </li>
         </ul>
       </nav>
