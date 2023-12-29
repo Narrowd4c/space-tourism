@@ -6,12 +6,14 @@
     <div
       class="container flex flex-col items-center justify-center gap-20 pb-20 text-center xl:flex-row xl:gap-40 xl:text-start"
     >
-      <img
-        ref="planetImg"
-        :src="currentPlanetData?.planetImg"
-        :alt="currentPlanetData?.planetName"
-        class="animate-[spin_30s_ease-in_infinite]"
-      />
+      <div class="overflow-hidden">
+        <img
+          ref="planetImg"
+          :src="currentPlanetData?.planetImg"
+          :alt="currentPlanetData?.planetName"
+          class="animate-[spin_30s_ease-in_infinite]"
+        />
+      </div>
       <div class="md:w-2/3 xl:w-1/3">
         <nav class="pb-10">
           <ul class="flex justify-center gap-9 xl:justify-start">
@@ -27,7 +29,9 @@
           </ul>
         </nav>
         <main>
-          <h2 class="pb-4 text-8xl uppercase">{{ currentPlanetData?.planetName }}</h2>
+          <h2 ref="gsapAnimation" class="pb-4 text-8xl uppercase">
+            {{ currentPlanetData?.planetName }}
+          </h2>
           <p
             class="mb-7 border-b border-[#383B4B] pb-12 font-barlow text-lg leading-relaxed text-secondary"
           >
@@ -57,8 +61,8 @@ import MarsImage from "@/assets/images/destination/image-mars.png";
 import TitanImage from "@/assets/images/destination/image-titan.png";
 import EuropaImage from "@/assets/images/destination/image-europa.png";
 
-import { ref, computed } from "vue";
-
+import { ref, computed, watch } from "vue";
+import { gsap } from "gsap";
 interface planetDataType {
   planetName: string;
   planetDistance: string;
@@ -112,6 +116,18 @@ const currentPlanetData = computed(() => {
 function toggle(val: string) {
   currentPlanet.value = val;
 }
+
+const gsapAnimation = ref<HTMLElement | null>(null);
+
+watch(currentPlanet, () => {
+  let tween = gsap.timeline();
+  tween.fromTo(
+    gsapAnimation.value,
+    { x: 200, duration: 1, opacity: 0, skewX: -50, ease: "bounce.out" },
+    { x: 0, duration: 1, opacity: 1, skewX: 0, ease: "bounce.out" }
+  );
+  gsap.fromTo(planetImg.value, { opacity: 0, duration: 2 }, {opacity:1, duration: 2})
+});
 </script>
 
 <style scoped>
