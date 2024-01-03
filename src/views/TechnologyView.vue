@@ -4,9 +4,9 @@
     <div class="container overflow-hidden py-20 xl:pr-0">
       <PageTitle class="pb-20" title="SPACE LAUNCH 101" pageNumber="03"></PageTitle>
       <main class="flex flex-wrap items-center xl:flex-nowrap">
-        <picture class="gsapAnimation xl:order-3">
+        <picture class="mx-auto xl:ms-auto gsapAnimation xl:order-3">
           <source :srcset="currentData!.image.landscape" media="(min-width: 1280px)" />
-          <img class="ms-auto" :src="currentData!.image.portrait" :alt="currentData!.title" />
+          <img :src="currentData!.image.portrait" :alt="currentData!.title" />
         </picture>
         <div class="mx-auto flex gap-8 py-10 xl:flex-col xl:py-0">
           <button
