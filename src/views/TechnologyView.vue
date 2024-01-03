@@ -88,18 +88,20 @@ const terminologyTitle = computed(() => {
   return dataTerminology.value.map(({ title }) => title);
 });
 const currentData = ref<Terminology>();
+
 let mm = gsap.matchMedia();
 
 watchEffect(() => {
   currentData.value = dataTerminology.value.find(({ title }) => title == current.value);
   mm.add("(min-width: 1280px)", () => {
-    gsap.from(".gsapAnimation", { y: 200, opacity: 0, duration: 1, ease: "back.out(1.7)" });
+    gsap.fromTo(".gsapAnimation", { y: 100, opacity: 0, duration: 0.5, ease: "back.out(1.7)" }, {y:0, opacity:1});
   });
 });
 
 function toggle(title: string) {
   current.value = title;
 }
+
 </script>
 
 <style scoped>
